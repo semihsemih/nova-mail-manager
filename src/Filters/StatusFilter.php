@@ -17,17 +17,16 @@ class StatusFilter extends Filter
     /**
      * Apply the filter to the given query.
      *
-     * @param  \Illuminate\Http\Request  $request
      * @param  \Illuminate\Database\Eloquent\Builder  $query
      * @param  mixed  $value
      * @return \Illuminate\Database\Eloquent\Builder
      */
     public function apply(Request $request, $query, $value)
     {
-        if( $value === 'sent' ) {
-            return $query->where('is_sent', true );
-        } elseif ( $value === 'unsent') {
-            return $query->where('is_sent', false );
+        if ($value === 'sent') {
+            return $query->where('is_sent', true);
+        } elseif ($value === 'unsent') {
+            return $query->where('is_sent', false);
         }
 
         return $query;
@@ -36,14 +35,13 @@ class StatusFilter extends Filter
     /**
      * Get the filter's available options.
      *
-     * @param  \Illuminate\Http\Request  $request
      * @return array
      */
     public function options(Request $request)
     {
         return [
             'Sent Emails' => 'sent',
-            'Unsent Emails' => 'unsent'
+            'Unsent Emails' => 'unsent',
         ];
     }
 

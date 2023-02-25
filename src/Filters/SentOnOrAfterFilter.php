@@ -8,11 +8,9 @@ use Laravel\Nova\Filters\DateFilter;
 
 class SentOnOrAfterFilter extends DateFilter
 {
-
     /**
      * Apply the filter to the given query.
      *
-     * @param  \Illuminate\Http\Request  $request
      * @param  \Illuminate\Database\Eloquent\Builder  $query
      * @param  mixed  $value
      * @return \Illuminate\Database\Eloquent\Builder
@@ -21,7 +19,7 @@ class SentOnOrAfterFilter extends DateFilter
     {
         $value = Carbon::parse($value);
 
-        return $query->where('created_at', '>=', $value );
+        return $query->where('created_at', '>=', $value);
     }
 
     /**

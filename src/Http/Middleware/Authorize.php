@@ -2,8 +2,8 @@
 
 namespace BinaryBuilds\NovaMailManager\Http\Middleware;
 
-use Laravel\Nova\Nova;
 use BinaryBuilds\NovaMailManager\NovaMailManager;
+use Laravel\Nova\Nova;
 
 class Authorize
 {
@@ -24,7 +24,7 @@ class Authorize
     /**
      * Determine whether this tool belongs to the package.
      *
-     * @param \Laravel\Nova\Tool $tool
+     * @param  \Laravel\Nova\Tool  $tool
      * @return bool
      */
     public function matchesTool($tool)

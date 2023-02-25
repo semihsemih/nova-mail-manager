@@ -11,16 +11,15 @@ use BinaryBuilds\NovaMailManager\Filters\SentOnOrBeforeFilter;
 use BinaryBuilds\NovaMailManager\Filters\StatusFilter;
 use BinaryBuilds\NovaMailManager\Metrics\EmailsByMailable;
 use BinaryBuilds\NovaMailManager\Metrics\EmailsPerDay;
+use Illuminate\Http\Request;
 use Laravel\Nova\Fields\Boolean;
 use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\Number;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Resource;
-use Illuminate\Http\Request;
 
 /**
  * Class NovaMailResource
- * @package BinaryBuilds\Resources
  */
 class NovaMailResource extends Resource
 {
@@ -45,7 +44,6 @@ class NovaMailResource extends Resource
     public static $perPageViaRelationship = 25;
 
     /**
-     * @param Request $request
      * @return array
      */
     public function fields(Request $request)
@@ -59,7 +57,7 @@ class NovaMailResource extends Resource
 
             Text::make(__('Subject'), 'subject'),
 
-            Text::make(__('Recipients'), function (){
+            Text::make(__('Recipients'), function () {
                 return implode(', ', $this->recipients);
             }),
 
@@ -71,29 +69,29 @@ class NovaMailResource extends Resource
         ];
     }
 
-    public function actions( Request $request )
+    public function actions(Request $request)
     {
         return [
-            new ResendMail
+            new ResendMail,
         ];
     }
 
-    public function filters( Request $request )
+    public function filters(Request $request)
     {
         return [
             new MailableFilter,
             new StatusFilter,
             new QueuedFilter,
             new SentOnOrAfterFilter,
-            new SentOnOrBeforeFilter
+            new SentOnOrBeforeFilter,
         ];
     }
 
-    public function cards( Request $request )
+    public function cards(Request $request)
     {
         return [
             new EmailsPerDay,
-            new EmailsByMailable
+            new EmailsByMailable,
         ];
     }
 
@@ -117,7 +115,7 @@ class NovaMailResource extends Resource
         return false;
     }
 
-    public function authorizedToUpdate( Request $request )
+    public function authorizedToUpdate(Request $request)
     {
         return false;
     }

@@ -11,7 +11,6 @@ class EmailsPerDay extends Trend
     /**
      * Calculate the value of the metric.
      *
-     * @param  \Illuminate\Http\Request  $request
      * @return mixed
      */
     public function calculate(Request $request)
@@ -27,7 +26,7 @@ class EmailsPerDay extends Trend
     public function ranges()
     {
         return [
-            7  => '1 '.__('Week'),
+            7 => '1 '.__('Week'),
             14 => '2 '.__('Weeks'),
             30 => '30 '.__('Days'),
             60 => '60 '.__('Days'),

@@ -2,12 +2,12 @@
 
 namespace BinaryBuilds\NovaMailManager;
 
+use BinaryBuilds\NovaMailManager\Http\Middleware\Authorize;
 use BinaryBuilds\NovaMailManager\Resources\NovaMailResource;
-use Laravel\Nova\Nova;
-use Laravel\Nova\Events\ServingNova;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
-use BinaryBuilds\NovaMailManager\Http\Middleware\Authorize;
+use Laravel\Nova\Events\ServingNova;
+use Laravel\Nova\Nova;
 
 class NovaMailManagerServiceProvider extends ServiceProvider
 {
@@ -20,14 +20,14 @@ class NovaMailManagerServiceProvider extends ServiceProvider
     {
         $this->loadViewsFrom(__DIR__.'/../resources/views', 'nova-mail-manager');
 
-        $this->app->register( \BinaryBuilds\LaravelMailManager\LaravelMailManagerServiceProvider::class );
+        $this->app->register(\BinaryBuilds\LaravelMailManager\LaravelMailManagerServiceProvider::class);
 
         $this->app->booted(function () {
             $this->routes();
         });
 
         Nova::resources([
-            NovaMailResource::class
+            NovaMailResource::class,
         ]);
 
         Nova::serving(function (ServingNova $event) {

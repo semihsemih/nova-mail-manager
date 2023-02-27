@@ -10,7 +10,7 @@ A [Laravel Nova](https://nova.laravel.com/) tool to easily resend your system ge
 
 This package can be installed using composer.
 ```bash
-composer require binarybuilds/nova-mail-manager
+composer require semihsemih/nova-mail-manager
 ```
 Next you must register the package's service provider by adding the below line to `providers` array inside 
 `config/app.php` file.
